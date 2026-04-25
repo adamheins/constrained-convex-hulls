@@ -1,10 +1,9 @@
-"""Generate constrained convex hulls as SVGs."""
+"""Generate constrained convex hulls as an SVG."""
 
 import argparse
 
 import cdd
 import drawsvg as draw
-import matplotlib.pyplot as plt
 import numpy as np
 import scipy
 
