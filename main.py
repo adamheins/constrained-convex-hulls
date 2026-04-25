@@ -155,6 +155,13 @@ def main():
         default=0.6,
         help="Upper bounds on the convex hull weights.",
     )
+    parser.add_argument(
+        "-v",
+        "--max-vertices",
+        type=int,
+        default=6,
+        help="Maximum number of vertices of the original shape.",
+    )
     args = parser.parse_args()
 
     assert 0 <= args.lower_bound <= args.upper_bound <= 1
@@ -162,7 +169,7 @@ def main():
     np.random.seed(args.seed)
 
     shape = np.array([SVG_WIDTH, SVG_SHAPE_HEIGHT])
-    V = random_vertices(6) * shape + shape / 2
+    V = random_vertices(args.max_vertices) * shape + shape / 2
     nv = V.shape[0]
     print(f"vertices =\n{V}")
 
