@@ -1,19 +1,9 @@
-"""Generate constrained convex hulls as an SVG."""
-
 import argparse
 
 import cdd
 import drawsvg as draw
 import numpy as np
 import scipy
-
-
-SVG_WIDTH = 700
-SVG_SHAPE_HEIGHT = 300
-SVG_HEIGHT = 3 * SVG_SHAPE_HEIGHT
-
-SVG_BLUE = "rgb(47, 103, 177)"
-SVG_RED = "rgb(191, 44, 35)"
 
 
 def square_verts(s):
@@ -132,66 +122,7 @@ def svg_poly(vertices, fill, offset=None):
     )
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-s",
-        "--seed",
-        type=int,
-        default=11,  # picked because I think the shape looks interesting
-        help="Random seed to generate the shape.",
-    )
-    parser.add_argument(
-        "-l",
-        "--lower-bound",
-        type=float,
-        default=0.05,
-        help="Lower bounds on the convex hull weights.",
-    )
-    parser.add_argument(
-        "-u",
-        "--upper-bound",
-        type=float,
-        default=0.6,
-        help="Upper bounds on the convex hull weights.",
-    )
-    parser.add_argument(
-        "-v",
-        "--max-vertices",
-        type=int,
-        default=6,
-        help="Maximum number of vertices of the original shape.",
-    )
-    args = parser.parse_args()
-
-    assert 0 <= args.lower_bound <= args.upper_bound <= 1
-
-    np.random.seed(args.seed)
-
-    shape = np.array([SVG_WIDTH, SVG_SHAPE_HEIGHT])
-    V = random_vertices(args.max_vertices) * shape + shape / 2
-    nv = V.shape[0]
-    print(f"vertices =\n{V}")
-
-    l = args.lower_bound * np.ones(nv)
-    u = args.upper_bound * np.ones(nv)
-
-    V_l = constrain_vertex_weights(V, l=l, u=np.ones_like(u))
-    V_u = constrain_vertex_weights(V, l=np.zeros_like(l), u=u)
-    V_lu = constrain_vertex_weights(V, l=l, u=u)
-
-    hull1 = svg_poly(V, SVG_BLUE)
-    hull2 = svg_poly(V, SVG_BLUE, offset=(0, SVG_SHAPE_HEIGHT))
-    hull3 = svg_poly(V, SVG_BLUE, offset=(0, 2 * SVG_SHAPE_HEIGHT))
-
-    hull_l = svg_poly(V_l, SVG_RED)
-    hull_u = svg_poly(V_u, SVG_RED, offset=(0, SVG_SHAPE_HEIGHT))
-    hull_lu = svg_poly(V_lu, SVG_RED, offset=(0, 2 * SVG_SHAPE_HEIGHT))
-
-    d = draw.Drawing(SVG_WIDTH, SVG_HEIGHT)
-    d.extend([hull1, hull2, hull3, hull_l, hull_u, hull_lu])
-    d.save_svg("cch.svg")
+def svg_points(points, radius=5):
+    return [draw.Circle(x, y, radius) for x, y in points]
 
 
-if __name__ == "__main__":
-    main()
