@@ -1,9 +1,9 @@
 [project]
 name = "constrained-convex-hull"
 version = "0.1.0"
-description = "Add your description here"
+description = "Simple utilities and demos of constrained convex hulls."
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.10"
 dependencies = [
     "drawsvg>=2.4.1",
     "numpy>=2.4.4",

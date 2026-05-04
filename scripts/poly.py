@@ -20,7 +20,7 @@ def main():
     # looking figure
     shape = np.array([SVG_WIDTH, SVG_HEIGHT])
     V_random = cch.random_vertices(6) * shape / 1.75 + (500, 175)
-    V_square = cch.square_verts(200) + (150, 150)
+    V_square = cch.square_vertices(200) + (150, 150)
 
     d = draw.Drawing(SVG_WIDTH, SVG_HEIGHT)
     d.append(cch.svg_poly(V_square, SVG_RED))

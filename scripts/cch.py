@@ -2,10 +2,8 @@
 
 import argparse
 
-import cdd
 import drawsvg as draw
 import numpy as np
-import scipy
 
 import constrained_convex_hull as cch
 
@@ -19,6 +17,8 @@ SVG_RED = "rgb(191, 44, 35)"
 
 
 def main():
+    np.set_printoptions(suppress=True, precision=4)
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-s",
@@ -76,7 +76,6 @@ def main():
 
     d = draw.Drawing(SVG_WIDTH, SVG_HEIGHT)
     d.extend([hull1, hull2, hull3, hull_l, hull_u, hull_lu])
-    d.extend(cch.svg_points(V))
     d.save_svg("cch.svg")
 
 
