@@ -30,10 +30,20 @@ uv run scripts/cch.py --lower-bound 0.03 --upper-bound 0.7
 
 Generate examples of polygons:
 ```
-uv run scripts/poly.py
+uv run scripts/example_polygons.py
 ```
 
 Generate an example of applying uniform padding to a polygon:
 ```
-uv run scripts/padding.py
+uv run scripts/uniform_padding.py
 ```
+
+Generate examples of analytical solutions for constrained convex hulls with
+only lower or upper bounds:
+```
+uv run scripts/analytical_examples.py
+```
+
+## License
+
+MIT.

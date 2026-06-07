@@ -1,4 +1,5 @@
-"""Generate lower- or upper-bounded convex hulls analytically as SVGs."""
+"""Check that analytical lower- and upper-bounded convex hulls match the
+general solution."""
 
 import numpy as np
 import constrained_convex_hull as cch
