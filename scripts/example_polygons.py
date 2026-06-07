@@ -3,7 +3,7 @@
 import drawsvg as draw
 import numpy as np
 
-import constrained_convex_hull as cch
+import constrained_convex_hulls as cch
 
 
 SVG_WIDTH = 700

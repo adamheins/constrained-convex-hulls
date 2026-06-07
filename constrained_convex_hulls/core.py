@@ -59,12 +59,12 @@ def constrain_vertex_weights(V, l, u):
     return conv(V2)
 
 
-def inset_convex_hull_uniform(vertices, width):
+def inset_convex_hull_uniform(V, width):
     """Apply uniform padding to a convex hull.
 
     Parameters
     ----------
-    vertices : np.ndarray, shape (n, 2)
+    V : np.ndarray, shape (n, 2)
         The vertices of the convex hull.
     width : float
         Width of the padding to add.
@@ -75,8 +75,8 @@ def inset_convex_hull_uniform(vertices, width):
         The vertices of the padded convex hull.
     """
     # construct the polygon
-    n = vertices.shape[0]
-    M = np.hstack((np.ones((n, 1)), vertices))
+    n = V.shape[0]
+    M = np.hstack((np.ones((n, 1)), V))
     mat = cdd.matrix_from_array(array=M, rep_type=cdd.RepType.GENERATOR)
     poly = cdd.polyhedron_from_matrix(mat)
 
@@ -109,8 +109,8 @@ def vertex_adjacency(V):
     : Sequence[Set[int]]
         A sequence containing the indices of the neighbours of each vertex.
     """
-    n = vertices.shape[0]
-    M = np.hstack((np.ones((n, 1)), vertices))
+    n = V.shape[0]
+    M = np.hstack((np.ones((n, 1)), V))
     mat = cdd.matrix_from_array(array=M, rep_type=cdd.RepType.GENERATOR)
     return cdd.matrix_adjacency(mat)
 

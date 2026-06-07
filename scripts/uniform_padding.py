@@ -5,7 +5,7 @@ import argparse
 import drawsvg as draw
 import numpy as np
 
-import constrained_convex_hull as cch
+import constrained_convex_hulls as cch
 
 
 SVG_WIDTH = 700
@@ -45,7 +45,7 @@ def main():
     V = cch.random_vertices(args.max_vertices) * shape + shape / 2
     nv = V.shape[0]
 
-    V_in = cch.inset_convex_hull_uniform(vertices=V, width=args.width)
+    V_in = cch.inset_convex_hull_uniform(V, width=args.width)
 
     hull = cch.svg_poly(V, cch.SVG_BLUE)
     hull_in = cch.svg_poly(V_in, cch.SVG_RED)

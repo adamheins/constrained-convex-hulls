@@ -2,7 +2,7 @@
 general solution."""
 
 import numpy as np
-import constrained_convex_hull as cch
+import constrained_convex_hulls as cch
 
 
 def test_analytical_bounds(n, d):

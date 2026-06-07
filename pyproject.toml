@@ -1,5 +1,5 @@
 [project]
-name = "constrained-convex-hull"
+name = "constrained-convex-hulls"
 version = "0.1.0"
 description = "Simple utilities and demos of constrained convex hulls."
 readme = "README.md"
