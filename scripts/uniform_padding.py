@@ -1,3 +1,5 @@
+"""Example of a uniformly-padded convex hull."""
+
 import argparse
 
 import drawsvg as draw
@@ -8,9 +10,6 @@ import constrained_convex_hull as cch
 
 SVG_WIDTH = 700
 SVG_HEIGHT = 300
-
-SVG_BLUE = "rgb(47, 103, 177)"
-SVG_RED = "rgb(191, 44, 35)"
 
 
 def main():
@@ -48,8 +47,8 @@ def main():
 
     V_in = cch.inset_convex_hull_uniform(vertices=V, width=args.width)
 
-    hull = cch.svg_poly(V, SVG_BLUE)
-    hull_in = cch.svg_poly(V_in, SVG_RED)
+    hull = cch.svg_poly(V, cch.SVG_BLUE)
+    hull_in = cch.svg_poly(V_in, cch.SVG_RED)
 
     d = draw.Drawing(SVG_WIDTH, SVG_HEIGHT)
     d.extend([hull, hull_in])

@@ -12,9 +12,6 @@ SVG_WIDTH = 700
 SVG_SHAPE_HEIGHT = 300
 SVG_HEIGHT = 3 * SVG_SHAPE_HEIGHT
 
-SVG_BLUE = "rgb(47, 103, 177)"
-SVG_RED = "rgb(191, 44, 35)"
-
 
 def main():
     np.set_printoptions(suppress=True, precision=4)
@@ -56,23 +53,22 @@ def main():
 
     shape = np.array([SVG_WIDTH, SVG_SHAPE_HEIGHT])
     V = cch.random_vertices(args.max_vertices) * shape + shape / 2
-    nv = V.shape[0]
-    print(f"vertices =\n{V}")
+    n = V.shape[0]
 
-    l = args.lower_bound * np.ones(nv)
-    u = args.upper_bound * np.ones(nv)
+    l = args.lower_bound * np.ones(n)
+    u = args.upper_bound * np.ones(n)
 
     V_l = cch.constrain_vertex_weights(V, l=l, u=np.ones_like(u))
     V_u = cch.constrain_vertex_weights(V, l=np.zeros_like(l), u=u)
     V_lu = cch.constrain_vertex_weights(V, l=l, u=u)
 
-    hull1 = cch.svg_poly(V, SVG_BLUE)
-    hull2 = cch.svg_poly(V, SVG_BLUE, offset=(0, SVG_SHAPE_HEIGHT))
-    hull3 = cch.svg_poly(V, SVG_BLUE, offset=(0, 2 * SVG_SHAPE_HEIGHT))
+    hull1 = cch.svg_poly(V, cch.SVG_BLUE)
+    hull2 = cch.svg_poly(V, cch.SVG_BLUE, offset=(0, SVG_SHAPE_HEIGHT))
+    hull3 = cch.svg_poly(V, cch.SVG_BLUE, offset=(0, 2 * SVG_SHAPE_HEIGHT))
 
-    hull_l = cch.svg_poly(V_l, SVG_RED)
-    hull_u = cch.svg_poly(V_u, SVG_RED, offset=(0, SVG_SHAPE_HEIGHT))
-    hull_lu = cch.svg_poly(V_lu, SVG_RED, offset=(0, 2 * SVG_SHAPE_HEIGHT))
+    hull_l = cch.svg_poly(V_l, cch.SVG_RED)
+    hull_u = cch.svg_poly(V_u, cch.SVG_RED, offset=(0, SVG_SHAPE_HEIGHT))
+    hull_lu = cch.svg_poly(V_lu, cch.SVG_RED, offset=(0, 2 * SVG_SHAPE_HEIGHT))
 
     d = draw.Drawing(SVG_WIDTH, SVG_HEIGHT)
     d.extend([hull1, hull2, hull3, hull_l, hull_u, hull_lu])

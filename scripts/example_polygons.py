@@ -9,9 +9,6 @@ import constrained_convex_hull as cch
 SVG_WIDTH = 700
 SVG_HEIGHT = 300
 
-SVG_BLUE = "rgb(47, 103, 177)"
-SVG_RED = "rgb(191, 44, 35)"
-
 
 def main():
     np.random.seed(11)
@@ -23,8 +20,8 @@ def main():
     V_square = cch.square_vertices(200) + (150, 150)
 
     d = draw.Drawing(SVG_WIDTH, SVG_HEIGHT)
-    d.append(cch.svg_poly(V_square, SVG_RED))
-    d.append(cch.svg_poly(V_random, SVG_BLUE))
+    d.append(cch.svg_poly(V_square, cch.SVG_RED))
+    d.append(cch.svg_poly(V_random, cch.SVG_BLUE))
     d.extend(cch.svg_points(V_square))
     d.extend(cch.svg_points(V_random))
     d.save_svg("polygons.svg")

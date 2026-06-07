@@ -6,9 +6,9 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "drawsvg>=2.4.1",
-    "numpy>=2.4.4",
+    "numpy>=1.26.4",
     "pycddlib>=3.0.2",
-    "scipy>=1.17.1",
+    "scipy>=1.15.1",
 ]
 
 [build-system]
